@@ -6,7 +6,7 @@ import Plus from '../utils/icons/plus.svg'
 import Success from '../utils/icons/success.svg'
 import CaratRight from '../utils/icons/caratright.svg';
 import CaratLeft from '../utils/icons/caratright.svg'; 
-import '../utils/css/pdp.css';
+import '../../utils/css/pdp.css';
 
 import { Link } from 'react-router-dom';
 import usePdpApiCall from '../customHook/usePdpApiCall';
