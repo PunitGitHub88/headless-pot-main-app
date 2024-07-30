@@ -1,39 +1,31 @@
-
 import ContentStack from 'contentstack';
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from 'react';
 
-export default function useContentStackApi() {
+// Define Stack outside the component to prevent it from being recreated on every render
+const Stack = ContentStack.Stack(
+  "blt8cf7fa06f3654267",
+  "cs11432c464beca575ef07a998",
+  "preview"
+);
+
+export default function useContentStackApi(pageInfo, entrypoint) {
   const [contentData, setContentData] = useState([]);
-  //Initialize the Contentstack Stack for react
-  const Stack = ContentStack.Stack(
-    "blt8cf7fa06f3654267",
-    "cs11432c464beca575ef07a998",
-    "preview"
-  );
-  //Get a Single Entry
- useEffect(() => {
-  const Query = Stack.ContentType("home_page")
-  .Entry("bltb33c024768d87c22")
-  .toJSON()
-  .fetch()
-  .then(
-    function success(entry) {
-      console.log(entry["title"]);
-      console.log("entry", entry);
-      setContentData(entry.components);
-      console.log("entry", entry.components[0].teaser.content);
 
-      //setContentData(entry.components[0].teaser.content);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const entry = await Stack.ContentType(pageInfo)
+          .Entry(entrypoint)
+          .toJSON()
+          .fetch();
+        setContentData(entry.components);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-      // Retrieve field value by providing a field's uid
-      //console.log(entry.toJSON);
-      // Convert the entry result object to JSON
-    },
-    function error(err) {
-      // err object
-      console.log(err);
-    }
-  );
-  }, []);
+    fetchData();
+  }, [pageInfo, entrypoint]); // Only re-run if pageInfo or entrypoint change
+
   return contentData;
 }
