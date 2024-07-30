@@ -12,7 +12,7 @@ const refreshApi = corsAnywhere + baseurl + "/pif/api/session/refresh?appId=239"
 const userApi = corsAnywhere + baseurl + "/pif/api/user/v1/get-user?appId=239";
 const statusApi = corsAnywhere + baseurl + "/pif/api/status/v1/get-status?appId=239";
 */
-const  baseurl = "http://localhost:8888";
+const  baseurl = "";
 const contactApi = baseurl + "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239"
 const detailsApi = baseurl + "/.netlify/functions/apis/pif/api/session/details?appId=239";
 const toolsApi = baseurl + "/.netlify/functions/apis/pif/api/tools/v1/get-tools?appId=239";
