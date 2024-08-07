@@ -1,7 +1,6 @@
 const baseurl = "";
 const contactApi =
-  baseurl +
-  "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
+  baseurl + "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
 const detailsApi =
   baseurl + "/.netlify/functions/apis/pif/api/session/details?appId=239";
 const toolsApi =
@@ -19,14 +18,14 @@ const tokenUrl =
 
 const getProductDetail =
 baseurl +
-"/.netlify/functions/apis/productDetails/productDescription?productCode=BEAMHK";
+"/.netlify/functions/apis/productDetails/productDescription";
 
 const getPriceDetail =
 baseurl +
-  "/.netlify/functions/apis/productDetails/price?productCode=BEAMHK";
+  "/.netlify/functions/apis/productDetails/price";
 const getAvailability =
 baseurl +
-  "/.netlify/functions/apis/productDetails/atp?productCode=BEAMHK";
+  "/.netlify/functions/apis/productDetails/atp";
 
 export {
   contactApi,
