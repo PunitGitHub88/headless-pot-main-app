@@ -9,12 +9,17 @@ import ProtectedRoute from './Route/ProtectedRoute.js';
 import UserContext from './utils/contextdata/userContext.js';
 import PipPage from './pages/PipPage.js';
 import PdpPage from './pages/PdpPage.js';
+import { useEffect, useState } from 'react';
 
 function App() {
 
 
   const {detailData, contactData, error} = useApicall();
 
+  //const [dummyData,setDummyData ] = useState({});
+
+  
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,7 +28,7 @@ function App() {
         <Route path='search' element={<SearchPage/>}/>
         <Route path='pdp' element={<PdpPage/>}/>
         <Route path="pdp/:product_no" element={<ProtectedRoute element={PipPage} />} />
-         <Route path="search/:product_no" element={<ProtectedRoute element={PipPage} />} />
+         <Route path="/pip/:product_no" element={<ProtectedRoute element={PipPage} />} />
          
         <Route path='*' element={<NotFound error="404 page not found"/>}/>
       </Route>

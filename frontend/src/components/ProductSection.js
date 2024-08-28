@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
 import '../utils/css/ProductSection.css';
 import  {Link} from 'react-router-dom';
-import usePdpApiCall from '../customHook/usePdpApiCall';
-import {getProductDetail,getPriceDetail,getAvailability} from '../utils/ApiList/axiosapi';
 
 const ProductSection = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,6 +48,9 @@ const ProductSection = () => {
     { id: 24, partNumber: "V-V123", description: "Enclosed Victory Relay: SPST: N.O. Relay: 24 Vac/dc: 120V AC Coil: 20A Amperage Rating: HOA Switch: Digital HOA Monitor" },
     { id: 25, partNumber: "GFV545", description: "HFO-1234yf (3000 ppm): N2 Balance: 103 L" }
   ]
+
+  
+
   
 
   return (
@@ -89,7 +90,7 @@ const ProductSection = () => {
             </div>
             <div className='part-item-description'>
               <p className='desc-1'>PART NUMBER</p>
-              <Link to={localStorage.getItem("userLoggedIn") === "true" ?(`/search/${product.partNumber}`) : ""} className='details-link'>   <p className='desc-2'>{product.partNumber}</p></Link>
+              <Link to={localStorage.getItem("userLoggedIn") === "true" ?(`/pip/${product.partNumber}`) : ""} className='details-link'>   <p className='desc-2'>{product.partNumber}</p></Link>
               <p className='desc-3'>{product.description}</p>
               <div className='details-button'>
                 {/* <Link to={"/search/"+product.id} className='details-link'>Product Details</Link> */}

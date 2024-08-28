@@ -10,9 +10,11 @@ import CaratLeft from "../utils/icons/caratright.svg";
 
 import { Link } from "react-router-dom";
 
-import useDownloader from "../customHook/useDownloader";
+
+import useBynderPdf from "../customHook/useBynderPdf";
 
 const Pip = ({data,price,avail}) => {
+  
   const [activeTab, setActiveTab] = useState("Overview");
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,14 +22,6 @@ const Pip = ({data,price,avail}) => {
   if (!data) return null;
   if(!price) return null;
   if(!avail) return null;
-
-  
-
-  console.log("price from pdpcomponent", price);
-  
-  console.log("avail from pdpcomponent", avail); 
-  console.log("data from pdpcomponent", data);
-  console.log("price from pdpcomponent", price);
 
 
   const specifications = data?.pdpData?.classifications;
@@ -46,7 +40,22 @@ const Pip = ({data,price,avail}) => {
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
 
+  {/* 
+  const bynderPdf = useBynderPdf();
+  console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
 
+  const authenticatedDownload = (endpoint,name)=>{
+    if(localStorage.getItem('userLoggedIn') === "true"){
+      
+      pdfDownloadDummy(endpoint,name);
+      
+    } else{
+    alert("user not logged in");
+    }
+  }
+
+  */}
+  
   const pdfDownloadDummy = (_url, filename) => {
    // useDownloader(_url, filename);
     console.log("pdfdownload", _url);
@@ -56,6 +65,8 @@ const Pip = ({data,price,avail}) => {
     link.download = filename // Optional: Sets the file name based on the URL
     link.click();
   };
+
+  
   const pdfDownload = (_url, filename) => {
     // useDownloader(_url, filename);
      console.log("pdfdownload", _url);
@@ -331,13 +342,14 @@ const Pip = ({data,price,avail}) => {
                         </Link>
                       </td>
                     </tr>
+                    {/*
                     <tr>
                       <td>Dummy Builder.io Pdf</td>
                       <td>
                         <Link
                           onClick={() =>
                             pdfDownloadDummy(
-                             "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
+                             "https://honeywell.bynder.com/m/75ae18c48552a7d0/original/public_pmt-hps-etcr300-4-scn-pdf.pdf",
                              "demo_builder"
                             )
                           }
@@ -347,6 +359,20 @@ const Pip = ({data,price,avail}) => {
                         </Link>
                       </td>
                     </tr>
+                    <tr>
+                      <td>Private Builder.io Pdf</td>
+                      <td>
+                        <Link
+                          onClick={() =>
+                             authenticatedDownload(bynderPdf?.bynderPdf?.s3_file, "private_builder_pdf")
+                          }
+                          className="download-link"
+                        >
+                          Download
+                        </Link>
+                      </td>
+                    </tr>
+                    */}
                 </table>
               </div>
             )}
